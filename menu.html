@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Menu CEF SAMP</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background: rgba(0, 0, 0, 0.6); /* Bikin background game agak gelap pas menu buka */
+            user-select: none;
+        }
+        .card {
+            background: #1e1e24;
+            color: #ffffff;
+            padding: 30px;
+            border-radius: 15px;
+            text-align: center;
+            box-shadow: 0px 10px 25px rgba(0,0,0,0.7);
+            border: 2px solid #3a3a44;
+            width: 350px;
+        }
+        h2 {
+            margin-top: 0;
+            color: #4CAF50;
+            font-size: 24px;
+        }
+        p {
+            color: #b3b3b3;
+            font-size: 14px;
+            line-height: 1.5;
+            margin-bottom: 25px;
+        }
+        .btn {
+            background: #4CAF50;
+            color: white;
+            border: none;
+            padding: 12px 30px;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+            border-radius: 8px;
+            transition: 0.2s ease;
+            width: 100%;
+            box-shadow: 0px 4px 10px rgba(76, 175, 80, 0.3);
+        }
+        .btn:hover {
+            background: #45a049;
+            transform: translateY(-2px);
+        }
+        .btn:active {
+            transform: translateY(0);
+        }
+    </style>
+</head>
+<body>
+
+    <div class="card">
+        <h2>HADIAH HARIAN</h2>
+        <p>Halo cuk! Klik tombol di bawah ini untuk mengklaim hadiah uang tunai sebesar <b>$5,000</b> langsung ke karaktermu.</p>
+        
+        <button class="btn" onclick="klaim()">KLAIM SEKARANG</button>
+    </div>
+
+    <script>
+        function klaim() {
+            // Ngecek apakah fitur 'cef' terdeteksi di game
+            if (typeof cef !== 'undefined') {
+                // Mengirim sinyal ke script Pawn (.pwn) server SAMP kita
+                cef.emit("server:ambilHadiah", 5000);
+            } else {
+                alert("Kamu harus klik ini dari dalam game SAMP, cuk!");
+            }
+        }
+    </script>
+</body>
+</html>
